@@ -8,6 +8,36 @@
 
 \subsection{Specifications}
 
+The specifications were provided by the content developers which are meant to control the access that each individual student has to the content offered on Bodhitree. They are as follows:
+
+\begin{enumerate}
+	\item The instructor can tag the elements present in each concept. These elements can be any one of the following:
+	\begin{enumerate}
+		\item Videos
+		\item Documents
+		\item Quizzes
+		\item Video Markers (In-video Quizzes)
+	\end{enumerate}
+	\item These tagged elements cannot be accessed by the students having the default access to Bodhitree, i.e. students having access only to the free content.
+	\item Several elements can be tagged under one tag, for example, a video titled \textit{``HTML 5 Intro"} and a document titled \textit{``CSS \& Styles"} can be tagged as \textit{``P1"}. So, such elements come under a group which is denoted by a tag. The access to that particular tag denotes the access provided to those group of elements.
+	\item A student not having access to a particular tagged element can still see the title and the link to open that element, but when he tries to access the element, a dialogue box is displayed which informs him that he does not have access to that element.
+	\item In case of video markers: If the video markers are tagged and the student does not have access to that particular tag, then the video will be shown as a plain MP4 video without any in-video quizzes or information markers.
+	\item The instructor can upload a CSV file which contains the username's of the students that are currently registered on Bodhitree followed by the tags that the instructors want the students to have access to. A sample CSV file is shown below:
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+		\hline \rule[-2ex]{0pt}{5.5ex} stud1 & P1 & P2 & P3 \\ 
+		\hline \rule[-2ex]{0pt}{5.5ex} stud2 & P1 &  &  \\ 
+		\hline \rule[-2ex]{0pt}{5.5ex} stud3 & P3 &  &  \\ 
+		\hline 
+		\end{tabular} \\
+		\vspace{0.2cm}
+		\textit{Table 2}: Sample CSV file for uploading the students access tags
+	\end{center}
+	
+	\item The students who have access to a particular tag can access all the elements that are marked by that tag.
+\end{enumerate}
+
 \subsection{System Design}
 
-\subsection{Future Work}
+%\subsection{Future Work}

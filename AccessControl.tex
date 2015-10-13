@@ -52,13 +52,47 @@ When an element (video, document or quiz) is created in a concept, the default t
 \end{figure}
 
 \begin{enumerate}
+
 	\item The tagging interface consists of the following:
 	\begin{enumerate}
 		\item A label \textit{``Current Tag:"} followed by a badge. The badge shows the current tag of the element.
 		\item A drop down box which lists the 5 fixed tags \textit{(P1, P2, P3, P4, P5)}, as well as the custom tags set by the instructor.
-		\item A button labelled \textit{``Set New Tag"}, on clicking it sets the new tag to the element that is selected in the drop down box.
+		\item A button labelled \textit{``Set New Tag"}, on clicking it sets the new tag selected in the drop down box to that element.
 	\end{enumerate}
+	
+	\item A field \textit{``premium\_tag"} was added in the database table of each element of a concept, namely, the video, quiz and document table. An additional field \textit{``premium\_marker"} was added in the video table which stores the tags of the video markers.
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./media/elementsSchema}
+	\caption{Premium tags in the tables of Video, Quiz and Document}
+	\label{fig:elementsSchema}
+	\end{figure}
 
+	\item Once a new tag has been set to the element, the \textit{premium\_tag} field in the table of that element changes to the new tag.
+	
+\end{enumerate}
+
+\subsubsection*{Student's view:}
+
+\begin{enumerate}
+	\item Any student who has registered for the course can view all the elements that are tagged \textit{``Free"}.
+	
+	\item If a student tries to access an element that has been tagged and if he has not been given access to that tag, then instead of showing that element, an information box is shown which displays that the user does not have access to the content and a link is shown using which the student can use to request access to the content. It is depicted in the figure below:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{./media/sAccessNot}
+		\caption{An Uunauthorized student trying to view a tagged content}
+		\label{fig:sAccessNot}
+	\end{figure}
+
+\end{enumerate}
+
+\subsubsection*{Providing tag access to students:}
+
+\begin{enumerate}
+	\item The instructor uploads a CSV file as shown in Table 2.
+	\item Each username is checked against the users registered in Bodhitree.
 \end{enumerate}
 
 %\subsection{Future Work}

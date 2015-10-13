@@ -93,6 +93,25 @@ When an element (video, document or quiz) is created in a concept, the default t
 \begin{enumerate}
 	\item The instructor uploads a CSV file as shown in Table 2.
 	\item Each username is checked against the users registered in Bodhitree.
+	\item If the user is valid, then an entry is added in the database table \textit{``premiumuser"} which has the following three fields:
+	\begin{enumerate}
+		\item Username \textit{(user\_id)}
+		\item ID of the current course \textit{(course\_id)}
+		\item Premium tag name \textit{(premium\_type)}
+	\end{enumerate}
+	\item This table maintains the tag accesses each user has been provided for the current course.
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\linewidth]{./media/premiumAccesses}
+	\caption{Snapshot of the database table which stores the user access to tags}
+	\label{fig:premiumAccesses}
+	\end{figure}
+	
+	\item When a user opens a concept page, the tags he has access to is checked from the \textit{premiumuser} table, that is shown in \textit{Figure 8}.
+	
+	\item The data of only those elements of the concept is fetched from the database to whom the user has access to. For the rest of the elements, the key value pair HAS-ACCESS is FALSE!!!
+	
 \end{enumerate}
 
 %\subsection{Future Work}

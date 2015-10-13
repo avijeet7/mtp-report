@@ -85,8 +85,42 @@ When an element (video, document or quiz) is created in a concept, the default t
 		\caption{An Uunauthorized student trying to view a tagged content}
 		\label{fig:sAccessNot}
 	\end{figure}
+	
+	\item When a user opens a concept page, the tags he has access to is checked from the \textit{premiumuser} table, that is shown in \textit{Figure 8}.
+
+	\item The data of only those elements of the concept is fetched from the database to whom the user has access to. For the rest of the elements, the key value pair \textit{has\_access} is \textit{false}.
+	
+	\item If the value of \textit{has\_access} is \textit{false}, then the element is not shown to the user. The following figures show the data that is fetched to the client to implement access control.
+	
+	\item The first \textit{Figure 8} shows that the user does not have access to the element. Hence, the \textit{``has\_access"} and \textit{``marker\_access"} is \textit{false}. Also note that the markers list is empty, as the user does not have access to the video markers.
+	
+	\item Note that the \textit{``video\_file"} url and the \textit{``other\_file"} url data is not displayed to the user not having access to the corresponding tag.
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{./media/SUgetdata}
+	\caption{Data sent to user not having access to the element}
+	\label{fig:SUgetdata}
+	\end{figure}
+
+	\item The second \textit{Figure 9} shows that the user has access to the element. Hence, the \textit{``has\_access"} and \textit{``marker\_access"} is \textit{true} and all the required data is fetched from the server to display the element.
+	
+	\item Note that when the user has access, the complete data including the markers, video duration, other files details and the video file url is sent to the client.
+
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{./media/SAgetdata1}
+	. \\
+	. \\
+	. \\
+	\includegraphics[width=1\linewidth]{./media/SAgetdata2}
+	\caption{Data sent to the user having access to the element}
+	\label{fig:SAgetdata2}
+	\end{figure}
 
 \end{enumerate}
+
+\newpage
 
 \subsubsection*{Providing tag access to students:}
 
@@ -99,7 +133,7 @@ When an element (video, document or quiz) is created in a concept, the default t
 		\item ID of the current course \textit{(course\_id)}
 		\item Premium tag name \textit{(premium\_type)}
 	\end{enumerate}
-	\item This table maintains the tag accesses each user has been provided for the current course.
+	\item This table stores the tag accesses each user has been provided for a particular course.
 	
 	\begin{figure}[h]
 	\centering
@@ -108,10 +142,51 @@ When an element (video, document or quiz) is created in a concept, the default t
 	\label{fig:premiumAccesses}
 	\end{figure}
 	
-	\item When a user opens a concept page, the tags he has access to is checked from the \textit{premiumuser} table, that is shown in \textit{Figure 8}.
+	\item If the username is not found, then it is indicated to the instructor after he uploads the CSV file. Also, the current user accesses are also displayed to the instructor on the CSV uploading page, as shown in \textit{Figure 11}.
 	
-	\item The data of only those elements of the concept is fetched from the database to whom the user has access to. For the rest of the elements, the key value pair HAS-ACCESS is FALSE!!!
+	\item On successful upload of the CSV file having the user accesses to tags, an information page is displayed which shows the following details:
 	
+	\begin{enumerate}
+		\item \textit{Existing premium users}: The users which already have access to certain tags.
+		\item \textit{Users added as premium}: The new users/tags which were added to \textit{premiumuser} table.
+		\item \textit{Unknown users}: The users which are mentioned in the CSV file but who are not registered on Bodhitree.
+	\end{enumerate}
+		
+	\textit{Figure 12} depicts the successful upload information of the CSV.
+	
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{./media/CSVupload}
+\caption{Interface to upload the CSV file containing the user accesses to tags}
+\label{fig:CSVupload}
+\vspace{1cm}
+\includegraphics[width=0.7\linewidth]{./media/usertaguploadsuccess}
+\caption{Information displayed after successfully uploading the CSV file}
+\label{fig:usertaguploadsuccess}
+\end{figure}
+
+\subsubsection*{Removal of access to tags from users:}
+
+\begin{enumerate}
+	\item An interface is displayed to the instructor which shows the current users and the associated tags to which they have access to.
+	\item It is displayed in the form of a checklist, wherein the instructor can check the users and the tag access which he wants to remove and then clicking on the delete button provided will remove the corresponding entries from the database, stripping those users from the access to those tags. The users then are no longer able to access the elements corresponding to those tags.
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{./media/removeusers}
+\caption{Interface to remove user access to tags}
+\label{fig:removeusers}
+\end{figure}
+
+\subsubsection*{Handling authorization:}
+
+\begin{enumerate}
+	\item Only the Instructor ot the Content Developer must be able to grant access to other users. No unauthorized user should be able to access the CSV upload page of the Access Control module. This is done by displaying an unauthorized access page to the student who is trying to access the instructor page.
+	\item A user who does not have access to a particular tag must not be able to access any element associated with that tag. This is achieved by checking the authorization when the data is generated at the server side and sending only that data to the client to which he has access to.
+	\item Only the Instructor or Content Developer must be able to set the tag to an element. This is achieved by not displaying the element tagging area to any user who is not an Instructor or Content Developer.
 \end{enumerate}
 
 %\subsection{Future Work}

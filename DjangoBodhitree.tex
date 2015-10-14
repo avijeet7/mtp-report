@@ -1,47 +1,37 @@
 \section{Background}
 
+The development of Bodhitree is done using the Django web framework, the brief details of which are provided below.
+
 \subsection{Django Web Framework}
 
-\hspace{0.35cm} Django is a free and open source web application framework, written in Python, which follows the model–view–controller (MVC) architectural pattern.
-It's primary goal is to ease the creation of complex, database-driven websites which emphasizes reusability and "pluggability" of components, rapid development, and the principle of non-repetition. Python is used throughout, even for settings, files, and data models. The core Django framework can be seen as an MVC containing the following components:
+\hspace{0.35cm} Django is a free and open source web application framework, written in Python, which follows the model-view-controller (MVC) architectural pattern.
+It's primary goal is to ease the creation of complex, database-driven websites which emphasizes reusability and pluggability of components, rapid development, and the principle of non-repetition. Python is used throughout, even for settings, files, and data models. The core Django framework can be seen as an MVC containing the following components:
 \begin{itemize}
 	\item \emph{Model:} It consists of an object-relational mapper which mediates between data models and a relational database.
 	\item \emph{View:} A system for processing requests with a web templating system.
 	\item \emph{Controller:} A regular-expression-based URL dispatcher.
 \end{itemize}
 
-\subsection*{Details of the Django framework}
-\textbf{The working of Django can be described in the following steps:}
+\subsubsection*{The working of Django can be described in the following steps:}
 
-\subsubsection*{Designing the model}
-\hspace{0.35cm} Django gives you an automatically-generated database-access API. It has an object-relational mapper in which you describe your database layout in Python code. The migrate command looks at all your available models and automatically creates tables in your database for whichever tables don’t already exist.
+\begin{enumerate}
+	
+	\item \textbf{Designing the model:} Django gives you an automatically generated database access API. It has an object-relational mapper in which you describe your database layout in Python code. The migrate command looks at all your available models and automatically creates tables in your database for whichever tables don’t already exist
 
-\subsubsection*{The admin interface}
-\hspace{0.35cm} Once your models are defined, Django can automatically create an administrative interface which is a Web site that lets authenticated users add, change and delete objects.
+	\item \textbf{Designing the URLs:} To design URLs for an app, we create a Python module which contains a simple mapping between URL patterns and \emph{Views}.
+	
+	\item \textbf{Writing the views:} A view retrieves data according to the parameters, loads a template and renders the template with the retrieved data.
+	
+	\item \textbf{Designing the templates:} A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted. Django defines a standard API for loading and rendering templates regardless of the backend.
 
-\subsubsection*{Designing the URLs}
-\hspace{0.35cm} To design URLs for an app, we create a Python module called a \emph{URLconf}. It contains a simple mapping between URL patterns and \emph{Views}.
-
-\subsubsection*{Writing the views}
-\hspace{0.35cm} Each view is responsible for doing one of two things: Returning an HttpResponse object containing the content for the requested page, or raising an exception such as Http404. Generally, a view retrieves data according to the parameters, loads a template and renders the template with the retrieved data.
-
-\subsubsection*{Designing the templates}
-\hspace{0.35cm} A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted. Django defines a standard API for loading and rendering templates regardless of the backend.
+\end{enumerate}
 
 \subsection{Outlining Bodhitree}
 \hspace{0.35cm} Bodhitree is an online learning platform which is primarily aimed for education in India. In IIT Bombay, it is implemented as a SPOC (Small Private Online Course), which is a special version of a MOOC (Massive Open Online Course), that is used locally with on-campus students.
 
 \subsubsection*{List of modules in Bodhitree}
 
-\subsubsection*{Registration}
-It contains the models, views and templates for the Login information which consists the following modules:
-\begin{itemize}
-\item A login form requiring the fields username and password of a pre-existing user to log into the Bodhitree interface.
-\item A sign up form which requires fields such as the name and email of the user along with the login information. It is used to create the login and grant access to a new user.
-\item A forgot password link mapping to the ``*/forgotpassword/" url which asks for the username and email address of a pre-existing user in case he forgets his credentials.
-\end{itemize}
-
-\subsubsection*{Courseware}
+\subsubsection*{\textit{Courseware}}
 It contains the courses that have been registered by the user and the content offered by those courses. It is composed of several other modules which define the content of each individual course. They are as follows:
 \begin{itemize}
 	\item \emph{Concept} contains the complete learning content offered by the course in the forms of videos, documents, etc.
@@ -51,11 +41,11 @@ It contains the courses that have been registered by the user and the content of
 	\textbf{Autograders} play an important role in the assignments wherein certain scripts uploaded by the students as the submission of an assignment can be automatically evaluated. As an example, the evaluation may be done by testing several output cases against the results obtained by running the script by using the same predefined input for both of them. Then the differences in the results can be compared to appropriately grade the students.
 \end{itemize}
 
-\subsubsection*{Videos}
+\subsubsection*{\textit{Videos}}
 \hspace{0.35cm} Videos are inherently the most important part of the course, so clearly the intention is to provide the best experience to the students so as to maximize the learning. The content of the videos are at the sole discretion of the instructor. Usually, the videos are presented in the form of slides along with audio to explain the content in the slides.
 \par There is a total control over the navigation functions of the videos. The user can adjust the speed, volume of the video. He can also click on the navigator to jump to any specific time in the video. A table of contents is also provided which lists the different contents that the video covers and which can be used to navigate between them.
 
-\subsubsection*{Quiz}
+\subsubsection*{\textit{Quiz}}
 The quiz demands answers either of the form where the student has to check either of the options provided or some value has to be entered in the given textbox. It is essentially of two types: 
 \begin{itemize}
 	\item \emph{In-video quiz} is a short quiz which pops up when a student is watching the video when certain content is explained. It is related to what was just explained in the video. The video pauses at that point and resumes after the students attempts the quiz.
